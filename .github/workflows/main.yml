@@ -35,7 +35,7 @@ jobs:
         run: dotnet build --configuration release --no-restore
       
       - name: Dotnet publish
-        run: dotnet publish --configuration release --no-build --no-restore
+        run: dotnet publish --configuration release --no-build --no-restore -o testApp
       
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
