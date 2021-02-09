@@ -35,12 +35,7 @@ jobs:
         run: dotnet build --configuration release --no-restore
       
       - name: Dotnet publish
-        run: dotnet publish
-           ${{ env.PROJECT_DIRECTORY_PATH }}/${{ env.PROJECT_DIRECTORY_PATH }}.csproj
-           --source https://api.nuget.org/v3/index.json
-           --configuration Release
-           --no-restore
-           --no-build
+        run: dotnet publish --configuration release --no-build --no-restore
       
       - name: Upload Build Publish Artifact
         uses: actions/upload-artifact@v2
