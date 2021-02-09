@@ -37,10 +37,12 @@ jobs:
       - name: Dotnet publish
         run: dotnet publish --configuration release --no-build --no-restore
       
-      - name: Upload Build Publish Artifact
-        uses: actions/upload-artifact@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
         with:
-          name: Publish
-          path: D:\a\CICD\CICD\TestCICD\bin\Release\netcoreapp3.1\publish\
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: arjun2364/test
+          tag_with_ref: true
           
       
