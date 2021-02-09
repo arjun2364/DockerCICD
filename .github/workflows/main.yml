@@ -1,0 +1,51 @@
+name: CI CD
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+
+      - name: Dotnet restore packages
+        run: dotnet restore
+        
+      - uses: actions/cache@v2
+        with:
+          path: | 
+            ~/.nuget/packages
+            !~/.nuget/packages/unwanted
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+            
+      - name: Dotnet build
+        run: dotnet build --configuration release --no-restore
+      
+      - name: Dotnet publish
+        run: dotnet publish
+           ${{ env.PROJECT_DIRECTORY_PATH }}/${{ env.PROJECT_DIRECTORY_PATH }}.csproj
+           --source https://api.nuget.org/v3/index.json
+           --configuration Release
+           --no-restore
+           --no-build
+      
+      - name: Upload Build Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Publish
+          path: D:\a\CICD\CICD\TestCICD\bin\Release\netcoreapp3.1\publish\
+          
+      
