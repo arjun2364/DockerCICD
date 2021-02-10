@@ -43,3 +43,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: arjun2364/test:latest
+          cache-from: /home/runner/work/DockerCICD/DockerCICD/testApp/
+          cache-to: /home/runner/work/DockerCICD/DockerCICD/testApp/
