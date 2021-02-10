@@ -55,7 +55,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: 'arjun2364/test:latest'
-          cache-from: home/runner/work/DockerCICD/DockerCICD/testApp
-          cache-to: home/runner/work/DockerCICD/DockerCICD/testApp
+          tags: arjun2364/test:latest
       
