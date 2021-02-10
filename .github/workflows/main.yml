@@ -56,4 +56,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: arjun2364/test:${{ github.sha }}
+          tags: arjun2364/test:${{ github.sha }} 
