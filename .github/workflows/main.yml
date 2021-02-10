@@ -37,7 +37,7 @@ jobs:
       - name: Dotnet publish
         run: dotnet publish --configuration release --no-build --no-restore -o testApp
       
-      	  -
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
