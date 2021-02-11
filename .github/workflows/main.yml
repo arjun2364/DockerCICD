@@ -57,10 +57,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: arjun2364/test:latest
-
-      - name: script
-        run: chmod +rwx ./dockerRun.sh
-        shell: bash
         
       - name: Run shell script in linux vm
         uses: fifsky/ssh-action@master
