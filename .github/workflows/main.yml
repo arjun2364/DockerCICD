@@ -62,7 +62,7 @@ jobs:
         run: chmod +rwx ./dockerRun.sh
         shell: bash
         
-      - name: ls -a via ssh
+      - name: Run shell script in linux vm
         uses: fifsky/ssh-action@master
         with:
           command: ./dockerRun.sh
