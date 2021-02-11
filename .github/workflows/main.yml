@@ -76,5 +76,8 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: script
+        run: chmod +rwx ./dockerRun.sh
+        shell: bash
+      - name: script
         run: ./dockerRun.sh
         shell: bash
