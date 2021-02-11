@@ -58,10 +58,22 @@ jobs:
           push: true
           tags: arjun2364/test:latest
           
-      - name: ls -a via ssh
-        uses: fifsky/ssh-action@master
-        with:
-          command: ${GITHUB_WORKSPACE}/dockerRun.sh
-          host: ${{ secrets.SSH_HOST }}
-          user: arjun
-          key: ${{ secrets.SSH_PRIVATE_KEY}}
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: arjun
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+
+      - name: Stop the server
+        run: ssh ./dockerRun.sh
