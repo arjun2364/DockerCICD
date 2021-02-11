@@ -1,3 +1,4 @@
 #!/bin/sh
 # This is a comment!
-echo Hello World        # This is a comment, too!
+docker pull arjun2364/test:latest
+docker run -d -p 80:80 --name myapp arjun2364/test
