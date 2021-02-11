@@ -61,7 +61,7 @@ jobs:
       - name: ls -a via ssh
         uses: fifsky/ssh-action@master
         with:
-          command: bash dockerRun.sh -xe
+          command: "${GITHUB_WORKSPACE}/dockerRun.sh"
           host: ${{ secrets.SSH_HOST }}
           user: arjun
           key: ${{ secrets.SSH_PRIVATE_KEY}}
